@@ -29,8 +29,9 @@ while True:
             try:
                 result = eval(values['-DISPLAY-'])
                 window['-DISPLAY-'].update(result)
-            except (ZeroDivisionError, SyntaxError, ValueError):
-                window['-DISPLAY-'].update('Error')
+            except (ZeroDivisionError, SyntaxError, ValueError, NameError):
+                window['-DISPLAY-'].update('')
+                sg.popup("This cannot be calculated!")
 
         elif event in ['sin', 'cos', 'tan', 'log', 'sqrt']:
             expression += event
