@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import PySimpleGUI as sg
 from math import sin,cos,log,tan,sqrt
 
