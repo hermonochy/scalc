@@ -2,7 +2,9 @@
 
 ## Description
  This is a scientific calculator which uses a PySimpleGUI window. 
+ 
 ![](images/screenshot1.png)
+
 This calculator allows both mouse and keyboard inputs. 
 
 ## Technical details
@@ -30,7 +32,7 @@ if event == '-DISPLAY-_Enter'
 ```
 
 ## Notes
-The `requirements.txt` file points to an older PySimpleGUI version (4.60.5). Unlike Version 5.0.0, it does not need user registration or payment.
+The `requirements.txt` file points to an older PySimpleGUI version (4.60.5). Unlike Version 5.0.0 and above, it does not need user registration or payment.
 
 ## Future work
 - Add more scientific functions
