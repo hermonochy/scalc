@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 from math import sin,cos,log,tan,sqrt
 
 layout = [
-    [sg.Input(size=(20, 1), key='-DISPLAY-')],
+    [sg.Input(size=(20, 1), key='-INPUT-')],
     [sg.Button('('), sg.Button(')'),],
     [sg.Button('7'), sg.Button('8'), sg.Button('9'), sg.Button('+'), sg.Button('sin')],
     [sg.Button('4'), sg.Button('5'), sg.Button('6'), sg.Button('-'), sg.Button('cos')],
@@ -13,7 +13,7 @@ layout = [
 ]
 
 window = sg.Window('Scientific Calculator', layout, finalize=True)
-window['-DISPLAY-'].bind("<Return>", "_Enter")
+window['-INPUT-'].bind("<Return>", "_Enter")
 expression = ''
 
 while True:
@@ -22,23 +22,23 @@ while True:
     if event == sg.WIN_CLOSED: 
        break
 
-    if event in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', 'sin', 'cos', 'tan', 'log','.','(',')', 'sqrt','Clear','=','-DISPLAY-_Enter']:
+    if event in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', 'sin', 'cos', 'tan', 'log','.','(',')', 'sqrt','Clear','=','-INPUT-_Enter']:
         if event == 'Clear':
             expression = ''
-            window['-DISPLAY-'].update('')
-        elif event == '-DISPLAY-_Enter' or event == '=':
+            window['-INPUT-'].update('')
+        elif event == '-INPUT-_Enter' or event == '=':
             try:
-                result = eval(values['-DISPLAY-'])
-                window['-DISPLAY-'].update(result)
+                result = eval(values['-INPUT-'])
+                window['-INPUT-'].update(result)
             except (ZeroDivisionError, SyntaxError, ValueError, NameError):
-                window['-DISPLAY-'].update('')
+                window['-INPUT-'].update('')
                 sg.popup("This cannot be calculated!")
 
         elif event in ['sin', 'cos', 'tan', 'log', 'sqrt']:
             expression += event
             expression += '('
-            window['-DISPLAY-'].update(expression)
+            window['-INPUT-'].update(expression)
         else:
             expression += event
-            window['-DISPLAY-'].update(expression)
+            window['-INPUT-'].update(expression)
         
