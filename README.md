@@ -7,6 +7,17 @@
 
 This calculator allows both mouse and keyboard inputs. 
 
+## Installation
+
+1. clone the repository: `https://github.com/hermonochy/scalc`
+2. enter the repository: `cd scalc`
+
+This repository has no requirements.
+
+## Startup
+
+For Linux users, enter `./scientific_calculator`, For windows, `python scientific_calculator`.
+
 ## Technical details
 
 Python has a function `eval()`, which can take any string and process it like command in a script. 
@@ -30,9 +41,6 @@ Inside the event loop, the ENTER key can now be caught by:
 ```
 if event == '-DISPLAY-_Enter'
 ```
-
-## Notes
-The `requirements.txt` file points to an older PySimpleGUI version (4.60.5). Unlike Version 5.0.0 and above, it does not need user registration or payment.
 
 ## Future work
 - Add more scientific functions

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import PySimpleGUI as sg
-from math import sin,cos,log,tan,sqrt
+from math import sin, cos, log, tan, sqrt
 
 layout = [
     [sg.Input(size=(20, 1), key='-INPUT-')],
@@ -9,7 +9,7 @@ layout = [
     [sg.Button('4'), sg.Button('5'), sg.Button('6'), sg.Button('-'), sg.Button('cos')],
     [sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('*'), sg.Button('tan')],
     [sg.Button('0'), sg.Button('Clear'), sg.Button('='), sg.Button('/'), sg.Button('sqrt')],
-    [sg.Button('log'), sg.Button('.')]
+    [sg.Button('log'), sg.Button('.'), sg.Button('x^2'), sg.Button('x^y')]  # Added buttons for square and power
 ]
 
 window = sg.Window('Scientific Calculator', layout, finalize=True)
@@ -20,25 +20,32 @@ while True:
     event, values = window.read()
     
     if event == sg.WIN_CLOSED: 
-       break
+        break
 
-    if event in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', 'sin', 'cos', 'tan', 'log','.','(',')', 'sqrt','Clear','=','-INPUT-_Enter']:
+    if event in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', 'sin', 'cos', 'tan', 'log', '.', '(', ')', 'sqrt', 'Clear', '=', 'x^2', 'x^y', '-INPUT-_Enter']:
         if event == 'Clear':
             expression = ''
             window['-INPUT-'].update('')
         elif event == '-INPUT-_Enter' or event == '=':
             try:
-                result = eval(values['-INPUT-'])
+                expression = expression.replace('^2', '**2')
+                expression = expression.replace('^', '**')
+                result = eval(expression)
                 window['-INPUT-'].update(result)
+                expression = ''
             except (ZeroDivisionError, SyntaxError, ValueError, NameError):
                 window['-INPUT-'].update('')
                 sg.popup("This cannot be calculated!")
 
         elif event in ['sin', 'cos', 'tan', 'log', 'sqrt']:
-            expression += event
-            expression += '('
+            expression += event + '('
+            window['-INPUT-'].update(expression)
+        elif event == 'x^2':
+            expression += '^2'
+            window['-INPUT-'].update(expression)
+        elif event == 'x^y':
+            expression += '^'
             window['-INPUT-'].update(expression)
         else:
             expression += event
             window['-INPUT-'].update(expression)
-        
